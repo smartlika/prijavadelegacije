@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Print Players from Container 2</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Referenca na osnovni CSS -->
+  <link rel="stylesheet" href="print.css"> <!-- Referenca na CSS za ispis -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="players.js" defer></script> <!-- Uključite players.js -->
+  
+  <style>
+    /* Dodajte stilove ovdje ako je potrebno */
+  </style>
+</head>
+<body>
+
+
+  <div class="container">
+    <div id="container1" class="column rounded p-3">
+      <!-- Add Player button -->
+      <button id="addPlayerBtn" class="add-player-btn">Dodaj igrača</button>
+    </div>
+
+    <div id="container2" class="column droppable rounded p-3">
+      <!-- Players dropped here will be listed -->
+    </div>
+  </div>
+
+  
+
+
+
+  <!-- Button for printing -->
+  <button id="printButton">Ispiši sadržaj kontejnera 2</button>
+
+
+
+  
+
+  <script>
+    // Čekaj da se dokument učita
+
+$(document).ready(function() {
+  // Iterirajte kroz listu igrača i dodajte ih u kontejner1
+  igraci.forEach(function(igrac) {
+    var playerId = igrac.ID.toString(); // ID igrača pretvaramo u string
+    var playerName = igrac.ime + " " + igrac.prezime; // Ime i prezime igrača
+    var playerElement = document.createElement('div');
+    playerElement.textContent = playerName;
+    playerElement.classList.add('player', 'draggable', 'bg-light', 'rounded', 'p-2', 'mb-2');
+    playerElement.setAttribute('data-player-id', playerId);
+    document.getElementById('container1').appendChild(playerElement);
+  });
+});
+
+
+  </script>
+
+  <script src="script.js"></script>
+  <script src="print.js"></script>
+
+  <script>
+    // Funkcija za brisanje elementa na dvostruki klik u kontejneru 2
+    function deletePlayerContainer2(event) {
+      // Uklanja element iz DOM-a
+      event.target.remove();
+    }
+
+    // Dodavanje event listenera za brisanje elemenata nakon dvostrukog klika u kontejneru 2 s potvrdom
+    $(document).on('dblclick', '#container2 .player', function() {
+    var confirmDelete = confirm("Jeste li sigurni da želite izbrisati ovog igrača?");
+    if (confirmDelete) {
+        $(this).remove(); // Uklanja kliknuti element ako je potvrđeno brisanje
+    }
+    });
+  </script>
+</body>
+</html>
