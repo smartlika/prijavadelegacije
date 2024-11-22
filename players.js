@@ -64,7 +64,7 @@ var playersDatabase = {
   ];
   
   var igraci = [
-    { ID: 1, id_klub: 1, ime: "Antonio", prezime: "Antonić" },
+    { ID: 1, id_klub: 1, ime: "Antonio-test", prezime: "Antonić-test" },
     { ID: 2, id_klub: 1, ime: "Barbara", prezime: "Barbarić" },
     { ID: 3, id_klub: 1, ime: "Cristiano", prezime: "Cristanić" },
     { ID: 4, id_klub: 1, ime: "Diana", prezime: "Dianić" },
